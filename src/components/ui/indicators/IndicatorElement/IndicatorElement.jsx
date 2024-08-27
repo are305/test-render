@@ -65,7 +65,7 @@ function IndicatorElement({ icon = "person", color = "#337ab7", indicator, enrol
                     </div>
                 </div>
             </div>
-            <a className="indicator-details" href='' target='_blank'>
+            <a className="indicator-details" href='www.google.com' target='_blank'>
                 <div className="text" style={{color: color}}>
                     View Details
                 </div>

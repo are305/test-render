@@ -1,50 +1,44 @@
 import React, { useState, useEffect } from 'react';
 import Loading2 from '../../ui/animations/loading/Loading2/Loading2';
 
-
-function ARSGrades(props) {
-
+function ARSGrades({ selectedEnrollment, currentGradesInfo, setCurrentGradesInfo }) {
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
-
         const controller = new AbortController();
 
-        if (props.selectedEnrollment){
+        if (selectedEnrollment && selectedEnrollment !== currentGradesInfo.course_id) {
+            setLoading(true);
 
-            if(props.selectedEnrollment !== props.currentGradesInfo.course_id){
-
-                setLoading(true);
-
-                fetch(`http://localhost:8000/indicator/grades/${props.selectedEnrollment}`, {
-                    signal: controller.signal,
-                    headers: {
-                        'Authorization': `Bearer ${window.sessionStorage.getItem("token")}`,
-                        'Content-Type': 'application/json'
-                    }
-                })
-                .then(res => res.json())
-                .then(async data => {
-                    await props.setCurrentGradesInfo(data.at_risk_students_grades);
-                    setLoading(false);
-                })
-                .catch(error => console.error(error));
-            } 
+            fetch(`http://localhost:8000/indicator/grades/${selectedEnrollment}`, {
+                signal: controller.signal,
+                headers: {
+                    'Authorization': `Bearer ${window.sessionStorage.getItem("token")}`,
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(res => res.json())
+            .then(async data => {
+                await setCurrentGradesInfo(data.at_risk_students_grades);
+                setLoading(false);
+            })
+            .catch(error => console.error(error));
         }
-        return () =>{
+
+        return () => {
             controller.abort();
-        }
-    }, [props.selectedEnrollment]);
+        };
+    }, [selectedEnrollment, currentGradesInfo.course_id, setCurrentGradesInfo]);
 
     if (loading) {
-        return <Loading2/>
-    }
-
-    if (!props.currentGradesInfo.students) {
         return <Loading2 />;
     }
 
-    if (props.currentGradesInfo.students.length === 0){
+    if (!currentGradesInfo.students) {
+        return <Loading2 />;
+    }
+
+    if (currentGradesInfo.students.length === 0) {
         return (
             <div>
                 <h2 className='title'>Grades</h2>
@@ -57,7 +51,9 @@ function ARSGrades(props) {
                         </tr>
                     </thead>
                     <tbody>
-                        No Students Data
+                        <tr>
+                            <td colSpan="3">No Students Data</td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
@@ -76,7 +72,7 @@ function ARSGrades(props) {
                     </tr>
                 </thead>
                 <tbody>
-                    {props.currentGradesInfo.students.map(student => (
+                    {currentGradesInfo.students.map(student => (
                         <tr key={student.id}>
                             <td>{student.name}</td>
                             <td>{student.grade}</td>

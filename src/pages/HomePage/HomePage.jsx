@@ -23,7 +23,7 @@ function HomePage() {
     const navigate = useNavigate();
 
     const [showFrequencyPopup, setShowFrequencyPopup] = useState(false);
-
+    // eslint-disable-next-line
     const [view, setView] = useState('settings');
 
     const [selectedEnrollment, setSelectedEnrollment] = useState(null);

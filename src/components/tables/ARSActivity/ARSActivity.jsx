@@ -1,46 +1,40 @@
 import React, { useState, useEffect } from 'react';
 import Loading2 from '../../ui/animations/loading/Loading2/Loading2';
 
-
-function ARSActivity(props) {
-
+function ARSActivity({ selectedEnrollment, currentActivityInfo, setCurrentActivityInfo }) {
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
-
         const controller = new AbortController();
 
-        if (props.selectedEnrollment){
+        if (selectedEnrollment && selectedEnrollment !== currentActivityInfo.course_id) {
+            setLoading(true);
 
-            if(props.selectedEnrollment !== props.currentActivityInfo.course_id){
-                
-                setLoading(true);
-
-                fetch(`http://localhost:8000/indicator/activity/${props.selectedEnrollment}`, {
-                    signal: controller.signal,
-                    headers: {
-                        'Authorization': `Bearer ${window.sessionStorage.getItem("token")}`,
-                        'Content-Type': 'application/json'
-                    }
-                })
-                .then(res => res.json())
-                .then(async data => {
-                    await props.setCurrentActivityInfo(data.at_risk_students_activity);
-                    setLoading(false);
-                })
-                .catch(error => console.error(error));
-            }
+            fetch(`http://localhost:8000/indicator/activity/${selectedEnrollment}`, {
+                signal: controller.signal,
+                headers: {
+                    'Authorization': `Bearer ${window.sessionStorage.getItem("token")}`,
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(res => res.json())
+            .then(async data => {
+                await setCurrentActivityInfo(data.at_risk_students_activity);
+                setLoading(false);
+            })
+            .catch(error => console.error(error));
         }
-        return () =>{
+
+        return () => {
             controller.abort();
-        }
-    }, [props.selectedEnrollment]);
+        };
+    }, [selectedEnrollment, currentActivityInfo.course_id, setCurrentActivityInfo]);
 
     if (loading) {
-        return <Loading2/>
+        return <Loading2 />;
     }
 
-    if (!props.currentActivityInfo.students) {
+    if (!currentActivityInfo.students) {
         return <Loading2 />;
     }
 
@@ -55,7 +49,7 @@ function ARSActivity(props) {
                     </tr>
                 </thead>
                 <tbody>
-                    {props.currentActivityInfo.students.map(student => (
+                    {currentActivityInfo.students.map(student => (
                         <tr key={student.id}>
                             <td>{student.name}</td>
                             <td>{student.days_inactive}</td>
