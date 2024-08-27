@@ -1,0 +1,28 @@
+
+.templates{
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    flex-wrap: wrap;
+
+}
+
+.templates .option{
+    background-color: #D9D9D9;
+    border-radius: 8px;
+    padding: 1rem;
+    min-width: 8rem;
+    transition: background-color 0.3s;
+    margin-inline: 2rem;
+    user-select: none;
+}
+
+.templates .option:hover{
+
+    background-color: #d9d9d979;
+    cursor: pointer;
+    
+}

@@ -1,0 +1,17 @@
+  .loading-1-container .loader {
+    margin: 0 0 2em;
+    width: 20%;
+    text-align: center;
+    padding: 1em;
+    margin: 0 auto 1em;
+    display: inline-block;
+    vertical-align: top;
+  }
+
+  /*
+    Set the color of the icon
+  */
+  .loading-1-container .loader svg path,
+  .loading-1-container .loader svg rect {
+    fill: #F6AA1B;
+  }

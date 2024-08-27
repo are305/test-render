@@ -1,0 +1,58 @@
+.nav-element {
+    display: flex;
+    flex-direction: column;
+}
+
+.nav-element-main {
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    color: #999;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05); /* Border similar to the original CSS */
+}
+
+.nav-element-main:hover {
+    color: #1abc9c; /* Greenish color on hover */
+    background-color: transparent; /* Ensure no additional background color */
+    box-shadow: 0 0 8px #1abc9c; /* Greenish glow effect */
+    border-bottom: 1px solid #1abc9c; /* Greenish highlight border on hover */
+}
+
+.nav-icon {
+    font-size: 24px;
+    margin-right: 10px;
+}
+
+.nav-text {
+    white-space: nowrap;
+    opacity: 0; /* Initially set to 0 */
+    transition: opacity 0.3s linear;
+}
+
+.nav-arrow {
+    margin-left: auto;
+    font-size: 24px;
+}
+
+.vertical-nav-bar:hover .nav-text {
+    opacity: 1;
+}
+
+.sub-menu {
+    padding-left: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.sub-menu-item {
+    color: #aeb2b7;
+    padding: 5px 0;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.sub-menu-item:hover {
+    color: #1abc9c;
+}

@@ -1,0 +1,37 @@
+.icon-primary-button{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    user-select: none;
+    padding-inline: 1rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    margin-top: 0.3rem;
+    margin-bottom: 0.3rem;
+    border-radius: 5px;
+    transition: background-color 0.5s;
+    background-color: var(--primary-color-1);
+    cursor: pointer;
+    gap: 0.4rem;
+}
+
+.icon-primary-button:hover{
+    background-color: var(--secondary-color-1);
+}
+
+.icon-primary-button .text{
+    font-family: var(--font-primary);
+    user-select: none;
+    color: white;
+    font-size: 14px;
+}
+
+.icon-primary-button .material-symbols-outlined {
+    font-size: 20px;
+    color: #ffffff;
+    user-select: none;
+    font-weight: 300;
+
+}

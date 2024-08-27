@@ -1,0 +1,24 @@
+.indicator-progress-bar-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 90px;
+}
+
+.indicator-progress-bar-container .title {
+    margin-bottom: 5px;
+    font-size: 16px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.indicator-progress-bar-container .material-symbols-outlined{
+    font-size: 24;
+    user-select: none;
+    cursor: default;
+}
+
+.indicator-progress-bar-container .text{
+    font-family: var(--font-primary);
+}

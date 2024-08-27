@@ -1,0 +1,50 @@
+input[type="text"],
+input[type="password"],
+input[type="date"],
+input[type="datetime"],
+input[type="email"],
+input[type="number"],
+input[type="search"],
+input[type="tel"],
+input[type="time"],
+input[type="url"],
+textarea,
+select {
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    font-size: var(--font-size-regular);
+    height: auto;
+    margin: 0;
+    outline: 0;
+    padding: 1rem;
+    width: 80%;
+    background-color: #e8eeef;
+    color: #8a97a0;
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.03) inset;
+    margin-bottom: 1rem;
+}
+
+.logout {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.welcome {
+
+    margin-inline: 2rem;
+
+}
+
+.centered {
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.aligner {
+    display: flex;
+    align-items: center;
+    align-content: center;
+}

@@ -1,0 +1,19 @@
+.nav-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 1rem;
+}
+
+.nav-container .title{
+    color: #224957;
+    font-size: 3rem;
+}
+
+.nav-container .options .welcome{
+    margin: 0;
+}
+
+.nav-container .options .logout{
+    margin: 0;
+}

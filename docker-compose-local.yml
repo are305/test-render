@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  web:
+    container_name: shepherdsguide-react_website
+    image: react-app-npm
+    stdin_open: true
+    build:
+      context: .
+      dockerfile: Dockerfile.local
+    ports:
+      - "3000:3000"
+    volumes:
+      - "./:/app"
+      - /app/node_modules/

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { config } from '../../config';
 import { PublicClientApplication } from '@azure/msal-browser';
 import { useNavigate } from "react-router-dom";
+import PrimaryButton from '../../components/ui/buttons/PrimaryButton/PrimaryButton';
 import styles from './LoginPage.module.css';
 
 function LoginPage() {
@@ -40,7 +41,7 @@ function LoginPage() {
                 <h1 className={styles.title}>
                     Shepherd's Guide
                 </h1>
-                <button onClick={handleLogin} text={"Log In"}/>
+                <PrimaryButton onClick={handleLogin} text={"Log In"}/>
             </div>
         </div>
     );

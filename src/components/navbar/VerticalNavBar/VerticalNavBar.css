@@ -1,0 +1,75 @@
+.vertical-nav-bar {
+    display: flex;
+    flex-direction: column;
+    background-color: #293949;
+    padding: 10px 0;
+    height: 100vh; /* Full viewport height */
+    width: 60px; 
+    position: fixed;
+    top: 0;
+    left: 0;
+    overflow: hidden; /* Prevents content from overflowing */
+    transition: width 0.3s ease; /* Smooth transition for width change */
+}
+
+.vertical-nav-bar.expanded {
+    width: 200px; /* Adjust based on your content width */
+}
+
+.nav-element {
+    display: flex;
+    flex-direction: column;
+}
+
+.nav-element-main {
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    color: #999;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap; /* Prevents text from wrapping */
+}
+
+.nav-element-main:hover {
+    color: #1abc9c; /* Change text color on hover */
+    background-color: #000; /* Background color on hover */
+    border-bottom: 1px solid #1abc9c; /* Highlight border on hover */
+    box-shadow: 0 0 8px #1abc9c; /* Add greenish glow effect */
+}
+
+.nav-text {
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.3s linear;
+    overflow: hidden; /* Prevents overflow of text */
+    text-overflow: ellipsis; /* Adds ellipsis for overflowed text */
+}
+
+.vertical-nav-bar.expanded .nav-text {
+    opacity: 1;
+}
+
+.sub-menu {
+    background: transparent; /* Remove background color */
+    padding-left: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.sub-menu-item {
+    color: #aeb2b7;
+    padding: 5px 0;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    background: transparent; /* Ensure sub-menu items do not have background color */
+}
+
+.sub-menu-item:hover {
+    color: #1abc9c;
+}
+
+.vertical-nav-bar:hover {
+    width: 250px;
+    overflow: visible;
+}

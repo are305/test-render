@@ -1,0 +1,11 @@
+.loading-2-container .loader {
+    width: 20%;
+    text-align: center;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.loading-2-container .loader svg path,
+.loading-2-container .loader svg rect {
+    fill: #F6AA1B;
+}
