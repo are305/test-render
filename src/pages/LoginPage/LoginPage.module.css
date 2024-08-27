@@ -1,0 +1,89 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+#main {
+    background: linear-gradient(to bottom, rgba(0,0,0,0.66) 100%, transparent), url(https://i.imgur.com/bKpqMLB.jpeg);
+    background-size: cover, cover;
+    background-position: center, center;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loginContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.title {
+    color: #FFF;
+    font-size: 5rem;
+    padding-bottom: 1rem;
+    margin: 0;
+    font-weight: 400;
+    position: relative;
+    opacity: 1;
+    transform: scale(1);
+    transition: transform 0.5s ease, opacity 1s ease;
+}
+
+.isLoading .title {
+    transform: scale(0.9);
+    opacity: 0;
+}
+
+.title:before,
+.title:after {
+    height: 2px;
+    width: 100%;
+    content: "";
+    background: white;
+    display: block;
+    position: absolute;
+    transition: width 0.4s ease;
+    transition-delay: 0.8s;
+}
+
+.title:before {
+    top: 0;
+    left: 0;
+}
+
+.title:after {
+    bottom: 0;
+    right: 0;
+}
+
+.isLoading .title:before,
+.isLoading .title:after {
+    width: 0;
+}
+
+.loginButton {
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    background-color: #58AF58;
+    height: 2.5rem;
+    width: 6rem;
+    transition: background-color 0.3s;
+    margin: 0.5rem;
+}
+
+.loginButton .text {
+    margin: 0;
+    color: white;
+    font-size: 0.8rem;
+}
+
+.loginButton:hover {
+    background-color: #346734;
+}
