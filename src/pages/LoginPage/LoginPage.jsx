@@ -1,0 +1,48 @@
+import React, { useEffect, useState } from 'react';
+import { config } from '../../config';
+import { PublicClientApplication } from '@azure/msal-browser';
+import { useNavigate } from "react-router-dom";
+
+function LoginPage() {
+    const navigate = useNavigate();
+    const [isLoading, setIsLoading] = useState(true);
+
+    const msalConfig = {
+        auth: {
+            clientId: config.clientId,
+            authority: config.authority,
+            redirectUri: config.redirectUri,
+        },
+    };
+    const msalInstance = new PublicClientApplication(msalConfig);
+    msalInstance.initialize();
+
+    const handleLogin = async () => {
+        try {
+            const response = await msalInstance.loginPopup();
+            window.sessionStorage.setItem("token", response.idToken);
+            navigate('/home');
+        } catch (error) {
+            navigate('/unauthorized');
+        }
+    };
+
+    useEffect(() => {
+        setTimeout(() => {
+            setIsLoading(false);
+        }, 100);
+    }, []);
+
+    return (
+        <div id="" className={isLoading ? '' : ''}>
+            <div className="">
+                <h1 className="">
+                    Shepherd's Guide
+                </h1>
+                <button onClick={handleLogin} text={"Log In"}/>
+            </div>
+        </div>
+    );
+}
+
+export default LoginPage;
