@@ -5,11 +5,12 @@
     padding: 10px 0;
     height: 100vh; /* Full viewport height */
     width: 60px; 
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
     overflow: hidden; /* Prevents content from overflowing */
     transition: width 0.3s ease; /* Smooth transition for width change */
+    user-select: none; /* Prevents user selection */
 }
 
 .vertical-nav-bar.expanded {

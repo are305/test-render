@@ -1,37 +1,45 @@
 import React, { useState, useEffect } from 'react';
 import Loading2 from '../../ui/animations/loading/Loading2/Loading2';
 
+
 function ARSActivity({ selectedEnrollment, currentActivityInfo, setCurrentActivityInfo }) {
+
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
+
         const controller = new AbortController();
 
-        if (selectedEnrollment && selectedEnrollment !== currentActivityInfo.course_id) {
-            setLoading(true);
+        if (selectedEnrollment) {
 
-            fetch(`http://localhost:8000/indicator/activity/${selectedEnrollment}`, {
-                signal: controller.signal,
-                headers: {
-                    'Authorization': `Bearer ${window.sessionStorage.getItem("token")}`,
-                    'Content-Type': 'application/json'
-                }
-            })
-            .then(res => res.json())
-            .then(async data => {
-                await setCurrentActivityInfo(data.at_risk_students_activity);
-                setLoading(false);
-            })
-            .catch(error => console.error(error));
+            if (selectedEnrollment !== currentActivityInfo.course_id) {
+
+                setLoading(true);
+
+                fetch(`http://localhost:8000/indicator/activity/${selectedEnrollment}`, {
+                    signal: controller.signal,
+                    headers: {
+                        'Authorization': `Bearer ${window.sessionStorage.getItem("token")}`,
+                        'Content-Type': 'application/json'
+                    }
+                })
+                    .then(res => res.json())
+                    .then(async data => {
+                        await setCurrentActivityInfo(data.at_risk_students_activity);
+                        setLoading(false);
+                    })
+                    .catch(error => console.error(error));
+            }
         }
-
         return () => {
             controller.abort();
-        };
-    }, [selectedEnrollment, currentActivityInfo.course_id, setCurrentActivityInfo]);
+        }
+    },
+        //eslint-disable-next-line
+        [selectedEnrollment]);
 
     if (loading) {
-        return <Loading2 />;
+        return <Loading2 />
     }
 
     if (!currentActivityInfo.students) {

@@ -9,26 +9,53 @@
 .custom-checkbox .checkbox-circle {
     width: 1.5rem;
     height: 1.5rem;
-    border: 2px solid #16a085;
     border-radius: 50%;
     margin-right: 1rem;
     display: flex;
     align-items: center;
     justify-content: center;
+    background-color: white;
+    flex-shrink: 0;
 }
 
 .custom-checkbox .checkbox-indicator {
-    width: 1rem;
-    height: 1rem;
+    width: 0;
+    height: 0;
     background-color: #16a085;
     border-radius: 50%;
+    transition: all 0.3s ease; 
+}
+
+.custom-checkbox.selected .checkbox-indicator {
+    width: 1rem;
+    height: 1rem;
+    animation: bounce 0.4s ease;
+}
+
+@keyframes bounce {
+    0% {
+        transform: scale(0);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+    75% {
+        transform: scale(0.9);
+    }
+    100% {
+        transform: scale(1);
+    }
 }
 
 .custom-checkbox.selected .checkbox-circle {
-    background-color: #16a085;
+    
 }
 
-.checkbox-label {
+.custom-checkbox .checkbox-label,
+.custom-checkbox.selected .checkbox-label {
     font-size: 1rem;
-    user-select: none;
+    max-width: 200px;
+    word-wrap: break-word;
+    word-break: break-word;
+    line-height: 1.2rem;
 }

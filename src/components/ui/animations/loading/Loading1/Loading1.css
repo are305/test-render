@@ -1,9 +1,6 @@
   .loading-1-container .loader {
-    margin: 0 0 2em;
     width: 20%;
     text-align: center;
-    padding: 1em;
-    margin: 0 auto 1em;
     display: inline-block;
     vertical-align: top;
   }

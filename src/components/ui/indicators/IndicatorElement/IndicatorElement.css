@@ -29,12 +29,12 @@
 
 .indicator-element-container .indicator-content .data .indicator-number {
     font-family: var(--font-primary);
-    font-size: 50px;
 }
 
 .indicator-element-container .indicator-content .data .indicator-subtitle {
     text-align: center;
     margin-bottom: 10px;
+    font-size: 14px;
 }
 
 .indicator-details .material-icons-outlined {

@@ -1,7 +1,4 @@
 import { BrowserRouter as Router, Routes, Route} from "react-router-dom";
-
-// import LoginForm from "./components/loginform";
-// import LandingPage from "./components/LandingPage";
 import Auth from "./components/utils/Auth";
 
 import HomePage from "./pages/HomePage/HomePage"

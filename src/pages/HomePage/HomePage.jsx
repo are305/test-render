@@ -23,7 +23,6 @@ function HomePage() {
     const navigate = useNavigate();
 
     const [showFrequencyPopup, setShowFrequencyPopup] = useState(false);
-    // eslint-disable-next-line
     const [view, setView] = useState('settings');
 
     const [selectedEnrollment, setSelectedEnrollment] = useState(null);
@@ -38,21 +37,26 @@ function HomePage() {
         setShowFrequencyPopup(!showFrequencyPopup);
     };
 
-    const indicatorsBar = [
-        { icon: "person", color: "#337ab7", indicator: "comments-interaction", subtitle: "Total Students", size: 1 },
-        { icon: "school", color: "#f39c12", indicator: "teacher-activity", subtitle: "Total Courses", size: 1.2 },
-        { icon: "assignment", color: "#d9534f", indicator: "grading-using-rubrics", subtitle: "Total Assignments", size: 0.9 },
-        { icon: "event", color: "#5cb85c", indicator: "average-class-activity", subtitle: "Upcoming Events", size: 1 },
-        { icon: "grade", color: "#9b59b6", indicator: "missing-grade-date", subtitle: "Average Grade", size: 1.1 },
+    const handleViewChange = (newView) => {
+        setView(newView);
+    };
+
+    const indicatorsElements = [
+        { icon: "person", color: "#337ab7", indicator: "total-students", subtitle: "Total Students", size: 1 },
+        { icon: "timer", color: "#f39c12", indicator: "teacher-activity", subtitle: "Teacher Activity", size: 0.7, format: "secondsToTime" },
+        { icon: "functions", color: "#5cb85c", indicator: "average-class-activity", subtitle: "Avr. Class Activity", size: 0.7, format: "secondsToTime" },
+        { icon: "functions", color: "#d9534f", indicator: "average-class-grade", subtitle: "Avr. Class Grade", size: 0.7 },
+        { icon: "rule", color: "#9b59b6", indicator: "missing-grade-date", subtitle: "Missing Grading", size: 0.4, format: "dateString" },
+        { icon: "assignment", color: "#d9534f", indicator: "total-students", subtitle: "TBD", size: 1},
     ];
 
     const indicatorsProgressBar = [
-        { title: "Comments", color: "#4caf50", icon: "person", indicator: "comments-interaction" },
-        { title: "Teacher Activity", color: "#2196f3", icon: "school", indicator: "teacher-activity" },
-        { title: "Grading Using Rubrics", color: "#ff9800", icon: "grading", indicator: "grading-using-rubrics" },
-        { title: "Average Class Activity", color: "#9c27b0", icon: "bar_chart", indicator: "average-class-activity" },
-        { title: "Average Class Grade", color: "#673ab7", icon: "grade", indicator: "average-class-grade" },
-        { title: "Missing Grade Date", color: "#f44336", icon: "schedule", indicator: "missing-grade-date" },
+        { title: "Comments", color: "#4caf50", icon: "comment", indicator: "comments-interaction" },
+        { title: "Grading Using Rubrics", color: "#ff9800", icon: "rubric", indicator: "grading-using-rubrics" },
+        { title: "TBD", color: "#C5CAE9", icon: "rubric", indicator: "test" },
+        { title: "TBD", color: "#7986CB", icon: "rubric", indicator: "test" },
+        { title: "TBD", color: "#5C6BC0", icon: "rubric", indicator: "test" },
+        { title: "TBD", color: "#3f51b5", icon: "rubric", indicator: "test" },
     ];
 
     useEffect(() => {
@@ -63,7 +67,7 @@ function HomePage() {
 
     return (
         <div className='homepage-container'>
-            <VerticalNavBar />
+            <VerticalNavBar onViewChange={handleViewChange} />
             <div className="primary-container">
                 <div className="course-list">
                     <EnrollmentsList
@@ -136,7 +140,7 @@ function HomePage() {
                 </div>
 
                 <div className="dashboard-indicators-elements">
-                    {indicatorsBar.map((config, index) => (
+                    {indicatorsElements.map((config, index) => (
                         <IndicatorElement
                             key={index}
                             icon={config.icon}
@@ -145,6 +149,7 @@ function HomePage() {
                             enrollment={selectedEnrollment}
                             subtitle={config.subtitle}
                             size={config.size}
+                            format={config.format}
                         />
                     ))}
                 </div>

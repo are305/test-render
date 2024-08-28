@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./VerticalNavBarElement.css";
 
-const VerticalNavBarElement = ({ icon, label, subItems }) => {
+const VerticalNavBarElement = ({ icon, label, subItems, onClick }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleToggle = () => {
@@ -11,7 +11,7 @@ const VerticalNavBarElement = ({ icon, label, subItems }) => {
   };
 
   return (
-    <div className="nav-element">
+    <div className="nav-element" onClick={onClick}>
       <div className="nav-element-main" onClick={handleToggle}>
         <span className="material-symbols-outlined nav-icon">{icon}</span>
         <span className="nav-text">{label}</span>

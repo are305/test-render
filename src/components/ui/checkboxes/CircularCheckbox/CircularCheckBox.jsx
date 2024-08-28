@@ -8,7 +8,7 @@ function CircularCheckbox({ label, isSelected, onToggle }) {
             onClick={onToggle}
         >
             <div className="checkbox-circle">
-                {isSelected && <div className="checkbox-indicator"></div>}
+                <div className="checkbox-indicator"></div>
             </div>
             <label className="checkbox-label">{label}</label>
         </div>

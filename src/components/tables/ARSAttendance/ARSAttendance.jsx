@@ -1,34 +1,41 @@
 import React, { useState, useEffect } from 'react';
 import Loading2 from '../../ui/animations/loading/Loading2/Loading2';
 
-function ARSAttendance({ selectedEnrollment, currentAttendanceInfo, setCurrentAttendanceInfo }) {
+function ARSAttendance({selectedEnrollment, currentAttendanceInfo, setCurrentAttendanceInfo}) {
+
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
+
         const controller = new AbortController();
 
-        if (selectedEnrollment && selectedEnrollment !== currentAttendanceInfo.course_id) {
-            setLoading(true);
+        if (selectedEnrollment){
 
-            fetch(`http://localhost:8000/indicator/attendance/${selectedEnrollment}`, {
-                signal: controller.signal,
-                headers: {
-                    'Authorization': `Bearer ${window.sessionStorage.getItem("token")}`,
-                    'Content-Type': 'application/json'
-                }
-            })
-            .then(res => res.json())
-            .then(async data => {
-                await setCurrentAttendanceInfo(data.at_risk_students_attendance);
-                setLoading(false);
-            })
-            .catch(error => console.error(error));
+            if(selectedEnrollment !== currentAttendanceInfo.course_id){
+                setLoading(true);
+
+                fetch(`http://localhost:8000/indicator/attendance/${selectedEnrollment}`, {
+                    signal: controller.signal,
+                    headers: {
+                        'Authorization': `Bearer ${window.sessionStorage.getItem("token")}`,
+                        'Content-Type': 'application/json'
+                    }
+
+                })
+                .then(res => res.json())
+                .then(async data => {
+                    await setCurrentAttendanceInfo(data.at_risk_students_attendance);
+                    setLoading(false);
+                })
+                .catch(error => console.error(error));
+            }
         }
-
-        return () => {
+        return () =>{
             controller.abort();
-        };
-    }, [selectedEnrollment, currentAttendanceInfo.course_id, setCurrentAttendanceInfo]);
+        }
+    }, 
+    //eslint-disable-next-line
+    [selectedEnrollment]);
 
     const getDaysDifference = (dateString) => {
         const today = new Date();
@@ -53,7 +60,7 @@ function ARSAttendance({ selectedEnrollment, currentAttendanceInfo, setCurrentAt
     };
 
     if (loading) {
-        return <Loading2 />;
+        return <Loading2/>;
     }
 
     if (!currentAttendanceInfo.students) {

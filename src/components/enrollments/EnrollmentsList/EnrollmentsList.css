@@ -1,4 +1,7 @@
 .enrollments-container{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
 }
 
 .enrollments-container .enrollment-title{
@@ -6,15 +9,26 @@
     font-size: 1.5rem;
 }
 
-.enrollments-list{
+.enrollments-container .enrollments-list{
     display: flex;
-    margin-top: 2rem;
+    flex-direction: column;
 }
 
-.enrollments-list label{
-    padding-left: 1rem;
-    font-size: 0.8rem;
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 .setting .checkboxes{
@@ -24,11 +38,9 @@
 }
 
 .checkboxes{
-
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-
 }
 
 
